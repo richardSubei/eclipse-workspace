@@ -7,7 +7,7 @@ public class PublicBox {
 	
 	private volatile BlockingQueue<Object> queue = new LinkedBlockingQueue<>(100);
 	
-	
+	//alter
 	public void increase(int i) {
 		while(queue.size() == MAX_SIZE) {
 			System.out.println("仓库已满，不必生产");
