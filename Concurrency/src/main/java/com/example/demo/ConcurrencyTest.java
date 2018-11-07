@@ -15,7 +15,7 @@ public class ConcurrencyTest {
 	
 	public static int threadTotal = 200;
 	
-	public static int count = 0;
+	public static int count = 0;				//AutomicInteger 保证原子操作
 	
 	public static void main(String[] args) {
 		
