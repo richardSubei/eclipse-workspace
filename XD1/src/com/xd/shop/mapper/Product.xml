@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.xd.shop.mapper.ProductMapper">
+	<resultMap type="com.xd.shop.po.Product" id="productRM">
+		<id property="productId" column="product_id"/>
+		<result property="categorySId" column="category_s_id"/>
+		<result property="productNo" column="product_no"/>
+		<result property="productName" column="product_name"/>
+		<result property="productPrice" column="product_price"/>
+		<result property="inventory" column="product_inventory"/>
+		<result property="productSalesTotal" column="product_sales_total"/>
+		<result property="productStatus" column="product_status"/>
+		<result property="productRemark" column="product_remark"/>
+		<collection property="productImgs" javaType="List" resultMap="productImgRM"></collection>
+	</resultMap>
+
+	<resultMap type="com.xd.shop.po.ProductImg" id="productImgRM">
+		<result property="productId" column="product_id"/>
+		<result property="productImg" column="product_img"/>
+		<result property="imgStatus" column="img_status"/>
+		<result property="imgOrder" column="img_order"/>
+	</resultMap>
+
+	<select id="find" resultMap="productRM">
+		select p.*, pi.product_id, pi.product_img, pi.img_status, img_order from product p left join product_img pi on p.product_id = pi.product_id where 1=1;
+	</select>
+
+	<insert id="insert" parameterType="com.xd.shop.po.Product">
+		insert into product values (#{productId}, #{categorySId}, #{productNo}, #{productName}, #{productPrice}, #{inventory},  #{productSalesTotal}, #{productStatus}, #{productRemark})
+	</insert>
+
+</mapper>

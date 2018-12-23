@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xd.shop.mapper.UserMapper">
+	<resultMap type="com.xd.shop.po.User" id="userRM">
+		<id property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="userPhone" column="user_phone"/>
+		<result property="userPassword" column="userPassword"/>
+		<result property="userAvatar" column="usr_avatar"/>
+		<result property="userStatus" column="user_status"/>
+		<result property="registerDate" column="register_date"/>
+		<result property="userLevel" column="user_level"/>
+		<result property="userPoints" column="user_points"/>
+	</resultMap>
+
+	<insert id="insert" parameterType="com.xd.shop.po.User">
+		insert into user values (
+			UUID(), #{userName}, #{userPhone}, #{userPassword}, #{userAvatar}, 
+			#{userStatus}, #{registerDate}, #{userLevel}, #{userPoints});
+	</insert>
+
+	<select id="getByUserAndPassword" parameterType="com.xd.shop.po.User" resultMap="userRM">
+		select * from user where user_phone = #{userPhone} and user_password = #{userPassword};
+	</select>
+
+
+</mapper>

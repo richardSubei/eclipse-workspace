@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xd.shop.mapper.CategorySecondMapper">
+	<resultMap type="com.xd.shop.po.CategorySecond" id="categorySecondRM">
+		<id property="categorySId" column="category_s_id"/>
+		<result property="categorySName" column="category_s_name"/>
+		<result property="categorySStatus" column="category_s_status"/>
+		<association property="categoryFirst" javaType="com.xd.shop.po.CategoryFirst" resultMap="categoryFirstRM">
+		</association>
+	</resultMap>
+
+	<resultMap type="com.xd.shop.po.CategoryFirst" id="categoryFirstRM">
+		<id property="categoryFId" column="category_f_id"/>
+		<result property="categoryFName" column="category_f_name"/>
+		<result property="categoryFStatus" column="category_f_status"/>
+	</resultMap>
+
+	<select id="find" resultMap="categorySecondRM">
+		select s.*, f.category_f_name from category_second s left join category_first f on s.category_f_id = f.category_f_id ;
+	</select>
+	
+	<select id="findByFId" parameterType="String" resultMap="categorySecondRM">
+		select * from category_second s where s.category_f_id = #{categoryFId}
+	</select>
+	
+	<insert id="insert" parameterType="com.xd.shop.po.CategorySecond">
+		insert into category_second values (UUID(), #{categoryFirst.categoryFId}, #{categorySName}, 1);
+	</insert>
+	
+	<delete id="delete" parameterType="String">
+		delete from category_second where category_s_id = #{categorySId}
+	</delete>
+	
+	<delete id="deleteBatch" parameterType="String">
+		delete from category_second where category_f_id = #{categoryFId}
+	</delete>
+	
+</mapper>
