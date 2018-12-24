@@ -6,7 +6,7 @@ public class Address {
 	private String address;
 	
 	private String phone;
-
+	
 	public String getAddress() {
 		return address;
 	}

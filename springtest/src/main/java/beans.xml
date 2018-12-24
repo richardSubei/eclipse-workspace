@@ -16,32 +16,52 @@
 	<!-- 开启注解模式 -->
 	<context:annotation-config />
 
-	<context:component-scan base-package="com.xingyu.demo.daoimpl"/>
+	<context:component-scan base-package="com.xingyu.demo.daoimpl" />
+
+	<bean id="userserviceimpl" class="com.xingyu.demo.service.UserServiceImpl">
+		<property name="userDaompl" ref="userdaoimpl"></property>
+	</bean>
 	
-	<bean id="userserviceimpl" class="com.xingyu.demo.service.UserServiceImpl"></bean>
 	<bean id="userdaoimpl" class="com.xingyu.demo.daoimpl.UserDaompl"></bean>
 
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+<!-- 
+	<bean id="jdbcTemplate1" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource1"></property>
+	</bean>
+-->
 	<!--<bean id="person" class="com.xingyu.demo.pojo.Person" autowire="byName"></bean> -->
 
 	<bean id="person" class="com.xingyu.demo.pojo.Person"></bean>
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="1234"></property>
-	</bean>
-
-
-	<bean id="address1" class="com.xingyu.demo.pojo.Address">
+	<bean id="address" class="com.xingyu.demo.pojo.Address">
 		<property name="address" value="shanghai"></property>
 		<property name="phone" value="110"></property>
 	</bean>
 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="1234"></property>
+	</bean>
+<!--
+	<bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver" />
+		<property name="url" value="jdbc:db2://127.0.0.1:50000/test"></property>
+		<property name="username" value="db2inst1"></property>
+		<property name="password" value="1234"></property>
+	</bean>
+-->	
+
+
+<!-- 
 	<bean id="address2" class="com.xingyu.demo.pojo.Address">
 		<property name="address" value="beijing"></property>
 		<property name="phone" value="120"></property>
 	</bean>
-	
+-->
 
 </beans>

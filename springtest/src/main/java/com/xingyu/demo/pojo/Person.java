@@ -13,8 +13,8 @@ public class Person implements Serializable {
 	
 	private String name;
 	//Autowired 是使用byType,而此时配置了两个Address的bean，所以要配合qualifier
+//	@Qualifier("address2")
 	@Autowired
-	@Qualifier("address2")
 	private Address address;
 
 	public int getId() {
@@ -45,7 +45,8 @@ public class Person implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", address=" + address.getAddress() + "]";
+//		return "Person [id=" + id + ", name=" + name + ", address=" + address.getAddress() + "]";
+		return "Person [id=" + id + ", name=" + name  + "]";
 	}
 
 	@SuppressWarnings("resource")

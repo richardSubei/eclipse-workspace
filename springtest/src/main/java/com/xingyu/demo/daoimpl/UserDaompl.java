@@ -3,15 +3,28 @@ package com.xingyu.demo.daoimpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
+import com.xingyu.demo.pojo.Person;
 
 public class UserDaompl {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+//	@Resource
+//	private JdbcTemplate jdbcTemplate1;
 	
 	public void insertByDataSource() {
 		
@@ -38,7 +51,21 @@ public class UserDaompl {
 	}
 	
 	public void insertByJdbcTemplate() {
+		String sql = "insert into person (id, name) values (2, 'james')";
+		jdbcTemplate.execute(sql);
 		
+	}
+	
+	public List<Person> findAll() {
+		String sql = "select * from person";
+		List<Person> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Person.class));
+		return list;
+	}
+	
+	public Person findById(int id) {
+		String sql = "select * from person where id = ?";
+		Person person = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Person.class));
+		return person;
 	}
 	
 }
