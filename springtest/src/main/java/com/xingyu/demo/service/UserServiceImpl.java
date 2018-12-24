@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.xingyu.demo.config.AppConfig;
@@ -13,9 +14,10 @@ import com.xingyu.demo.daoimpl.UserDaompl;
 import com.xingyu.demo.pojo.Person;
 
 @Service
+@Component
 public class UserServiceImpl {
 
-//	@Autowired
+	@Autowired
 	private UserDaompl userDaompl;
 	
 	//set ·½·¨×¢Èë
@@ -38,7 +40,7 @@ public class UserServiceImpl {
 	}
 	
 	public void findById() {
-		Person person = userDaompl.findById(2);
+		Person person = userDaompl.findById(1);
 		System.out.println(person.toString());
 	}
 	

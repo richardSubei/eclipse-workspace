@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xd.shop.mapper.CategoryFirstMapper">
+	<resultMap type="com.xd.shop.po.CategoryFirst" id="categoryFirstRM">
+		<id property="categoryFId" column="category_f_id"/>
+		<result property="categoryFName" column="category_f_name"/>
+		<result property="categoryFStatus" column="category_f_status"/>
+	 	<collection property="categorySeconds" javaType="List" ofType="com.xd.shop.po.CategorySecond" resultMap="categorySRM">
+		</collection>
+	</resultMap>
+	
+	<resultMap type="com.xd.shop.po.CategorySecond" id="categorySRM">
+		<result property="categorySName" column="category_s_name"/>
+	</resultMap>
+
+	<select id="find" resultMap="categoryFirstRM">
+		 select f.*, s.category_s_name from category_first f left join category_second s on f.category_f_id = s.category_f_id ;
+	</select>
+
+	<select id="findForSelect" resultMap="categoryFirstRM">
+		select * from category_first;
+	</select>
+
+	<select id="findCategoryFById" parameterType="String" resultMap="categoryFirstRM">
+		select * from category_first where category_f_id = #{categoryFId} and 1=1;
+	</select>
+	
+	<update id="updateCategoryF" parameterType="Map">
+		update category_first set category_f_name = #{categoryFName} where category_f_id = #{categoryFId};
+	</update>
+
+	<insert id="insert" parameterType="com.xd.shop.po.CategoryFirst">
+		insert into category_first values (UUID(), #{categoryFName}, #{categoryFStatus})
+	</insert>
+
+	<delete id="delete" parameterType="String">
+		delete from category_first where category_f_id = #{categoryFId}
+	</delete>
+	
+</mapper>

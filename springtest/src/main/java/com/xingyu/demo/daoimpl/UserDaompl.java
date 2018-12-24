@@ -12,13 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.xingyu.demo.pojo.Person;
 
+@Repository
 public class UserDaompl {
 
-	@Autowired
-	private DataSource dataSource;
+//	@Autowired
+//	private DataSource dataSource;
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -26,29 +29,29 @@ public class UserDaompl {
 //	@Resource
 //	private JdbcTemplate jdbcTemplate1;
 	
-	public void insertByDataSource() {
-		
-		String sql = "insert into person (id, name) values (1, 'kobe')";
-		
-		Connection conn = null;
-		PreparedStatement pst = null;
-		try {
-			conn = dataSource.getConnection();
-			pst = conn.prepareStatement(sql);
-			pst.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+//	public void insertByDataSource() {
+//		
+//		String sql = "insert into person (id, name) values (1, 'kobe')";
+//		
+//		Connection conn = null;
+//		PreparedStatement pst = null;
+//		try {
+//			conn = dataSource.getConnection();
+//			pst = conn.prepareStatement(sql);
+//			pst.executeUpdate();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				pst.close();
+//				conn.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 	
 	public void insertByJdbcTemplate() {
 		String sql = "insert into person (id, name) values (2, 'james')";

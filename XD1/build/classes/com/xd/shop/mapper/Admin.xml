@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xd.shop.mapper.AdminMapper">
+	<resultMap type="com.xd.shop.po.Admin" id="adminRM">
+		<id property="adminId" column="admin_id"/>
+		<result property="adminName" column="admin_name"/>
+		<result property="adminPassword" column="admin_password"/>
+		<result property="adminStatus" column="admin_status"/>
+	</resultMap>
+	
+	
+	<select id="findByNameAndPwd" parameterType="com.xd.shop.po.Admin" resultMap="adminRM">
+		select * from admin where admin_name = #{adminName} and admin_password = #{adminPassword} and 1=1;
+	</select>
+	
+	
+	
+</mapper>
