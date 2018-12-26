@@ -1,8 +1,9 @@
-package com.xingyu.demo.service;
+package com.xingyu.demo.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -10,43 +11,41 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.xingyu.demo.config.AppConfig;
-import com.xingyu.demo.daoimpl.UserDaompl;
+import com.xingyu.demo.dao.UserDao;
+import com.xingyu.demo.dao.impl.UserDaompl;
 import com.xingyu.demo.pojo.Person;
+import com.xingyu.demo.service.UserService;
 
 @Service
-@Component
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService{
 
 	@Autowired
-	private UserDaompl userDaompl;
-	
-	//set ·½·¨×¢Èë
-	public void setUserDaompl(UserDaompl userDaompl) {
-		this.userDaompl = userDaompl;
-	}
+	private UserDao userDao;
 	
 	public void test() {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 //		System.out.println(context.getBean("userserviceimpl"));
-		userDaompl.insertByJdbcTemplate();
+		userDao.insertByJdbcTemplate();
 //		userDaompl.insertByJdbcDaoSupport();
 	}
 	
 	public void findAll() {
-		List<Person> list = userDaompl.findAll();
+		System.out.println("service:findAll");
+		List<Person> list = userDao.findAll();
 		for (Person person : list) {
 			System.out.println(person.toString());
 		}
+//		System.out.println("===");
 	}
 	
 	public void findById() {
-		Person person = userDaompl.findById(1);
+		Person person = userDao.findById(1);
 		System.out.println(person.toString());
-	}
-	
+	}	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		UserServiceImpl userServiceImpl = (UserServiceImpl) context.getBean("userserviceimpl");
+//		UserService userServiceImpl = new UserServiceImpl();
 //		userServiceImpl.test();
 //		userServiceImpl.findAll();
 		userServiceImpl.findById();

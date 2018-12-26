@@ -13,10 +13,11 @@
 			http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
 			http://www.springframework.org/schema/tx 
 			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
+	
+	<context:component-scan base-package="com.xingyu.demo.service, com.xingyu.demo.dao,com.xingyu.demo.aop" />
+	
 	<!-- 开启注解模式 -->
-	<context:annotation-config />
-
-	<context:component-scan base-package="com.xingyu.demo.daoimpl, com.xingyu.demo.aop" />
+<!--  	<context:annotation-config />-->
 
 	<!-- 加载jdbc.properties -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -26,12 +27,14 @@
 	<!-- 开启aop -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-	<bean id="userserviceimpl" class="com.xingyu.demo.service.UserServiceImpl">
-		<!--  <property name="userDaompl" ref="userdaoimpl"></property>-->
+	<bean id="userController" class="com.xingyu.demo.controller.UserController"></bean>
+
+<!--
+	<bean id="userserviceimpl" class="com.xingyu.demo.service.impl.UserServiceImpl">
 	</bean>
-<!-- 
-	<bean id="userdaoimpl" class="com.xingyu.demo.daoimpl.UserDaompl"></bean>
+ 	<bean id="userdaoimpl" class="com.xingyu.demo.daoimpl.UserDaompl"></bean>
 -->
+
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>

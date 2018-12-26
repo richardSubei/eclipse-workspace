@@ -1,4 +1,4 @@
-package com.xingyu.demo.daoimpl;
+package com.xingyu.demo.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,16 +15,17 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.xingyu.demo.dao.UserDao;
 import com.xingyu.demo.pojo.Person;
 
 @Repository
-public class UserDaompl {
+public class UserDaompl extends BaseDaoImpl implements UserDao{
 
 //	@Autowired
 //	private DataSource dataSource;
 	
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+//	@Autowired
+//	private JdbcTemplate jdbcTemplate;
 	
 //	@Resource
 //	private JdbcTemplate jdbcTemplate1;

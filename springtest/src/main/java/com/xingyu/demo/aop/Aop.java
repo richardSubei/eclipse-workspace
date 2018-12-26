@@ -8,11 +8,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+
 @Component
 @Aspect
 public class Aop {
 
-	@Pointcut("execution(* com.xingyu.demo.daoimpl.*(..))")
+	@Pointcut("execution(* com.xingyu.demo.service.*.*(..))")
 	public void pointCut_() {
 	}
 	@Before("pointCut_()")
@@ -26,16 +27,16 @@ public class Aop {
 	
 //	@AfterReturning
 //	public void afterReturning() {
-//		System.out.println("pointCut之后执行");
+//		System.out.println("afterReturning");
 //	}
 //	@AfterThrowing
 //	public void afterThrowing() {
-//		System.out.println("有异常执行");
+//		System.out.println("afterThrowing");
 //	}
 //	
 //	@Around("pointCut_()")
 //	public void around() {
-//		System.out.println("around前后");
+//		System.out.println("around");
 //	}
 	
 }
