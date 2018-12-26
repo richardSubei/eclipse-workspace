@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.xingyu.demo.context.DBContextHolder;
 import com.xingyu.demo.dao.UserDao;
 import com.xingyu.demo.pojo.Person;
 
@@ -55,7 +56,7 @@ public class UserDaompl extends BaseDaoImpl implements UserDao{
 //	}
 	
 	public void insertByJdbcTemplate() {
-		String sql = "insert into person (id, name) values (2, 'james')";
+		String sql = "insert into person (id, name) values (3, 'kurry')";
 		jdbcTemplate.execute(sql);
 		
 	}

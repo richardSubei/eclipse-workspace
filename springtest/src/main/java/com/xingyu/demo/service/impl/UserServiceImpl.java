@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.xingyu.demo.config.AppConfig;
+import com.xingyu.demo.context.DBConstants;
+import com.xingyu.demo.context.RoutingDataSource;
 import com.xingyu.demo.dao.UserDao;
 import com.xingyu.demo.dao.impl.UserDaompl;
 import com.xingyu.demo.pojo.Person;
@@ -19,10 +21,11 @@ import com.xingyu.demo.service.UserService;
 @Service
 public class UserServiceImpl implements UserService{
 
-	@Autowired
+	@Autowired()
 	private UserDao userDao;
 	
-	public void test() {
+//	@RoutingDataSource(DBConstants.MYSQL)
+	public void insert(String str) {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 //		System.out.println(context.getBean("userserviceimpl"));
 		userDao.insertByJdbcTemplate();
@@ -30,7 +33,6 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public void findAll() {
-		System.out.println("service:findAll");
 		List<Person> list = userDao.findAll();
 		for (Person person : list) {
 			System.out.println(person.toString());
@@ -50,5 +52,6 @@ public class UserServiceImpl implements UserService{
 //		userServiceImpl.findAll();
 		userServiceImpl.findById();
 	}
+
 	
 }

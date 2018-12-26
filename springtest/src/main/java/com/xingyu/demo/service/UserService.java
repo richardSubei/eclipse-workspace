@@ -4,7 +4,7 @@ package com.xingyu.demo.service;
 
 public interface UserService {
 	
-	 void test();
+	 void insert(String str);
 
 	 void findAll();
 

@@ -23,11 +23,14 @@ public class UserController {
 	public void findById() {
 		userService.findById();
 	}
-	
+	public void insert() {
+		userService.insert("insert");
+	}
 	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		UserController userController = (UserController) context.getBean("userController");
-		userController.findAll();
+//		userController.findAll();
+		userController.insert();
 	}
 }
