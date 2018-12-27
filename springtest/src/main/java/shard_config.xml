@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE shardingConfig PUBLIC "-//shardbatis.googlecode.com//DTD Shardbatis 2.0//EN"
+	"http://shardbatis.googlecode.com/dtd/shardbatis-config.dtd">
+	
+	
+<shardingConfig>
+
+	<!-- 
+		pareList 可选配置，在parseList范围内并且不在ignoreList内的sql才会被解析
+	 -->
+
+<!--  
+	<ignoreList>
+		<value>com.xingyu.demo.dao.impl.UserDaoImpl.getAll</value>
+	</ignoreList>
+
+	<parseList>
+		<value>com.xingyu.demo.dao.impl.UserDaoImpl.insert</value>
+		<value>com.xingyu.demo.dao.impl.UserDaoImpl.getById</value>
+	</parseList>
+-->
+
+	<strategy tableName="user" strategyClass="com.xingyu.demo.dao.strategy.UserShardStrategyImpl"/>
+	
+</shardingConfig>	

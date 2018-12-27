@@ -7,12 +7,12 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import com.xingyu.demo.pojo.Person;
 
 
-public interface UserDao {
+public interface UserDao<T> extends BaseDao<T> {
 
-	public void insertByJdbcTemplate() ;
+//	public void insertByJdbcTemplate() ;
 	
-	public List<Person> findAll() ;
+//	public List<Person> findAll() ;
 	
-	public Person findById(int id) ;
+//	public Person findById(int id) ;
 	
 }

@@ -10,12 +10,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.ibm.db2.jcc.am.u;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.xingyu.demo.config.AppConfig;
 import com.xingyu.demo.context.DBConstants;
 import com.xingyu.demo.context.RoutingDataSource;
 import com.xingyu.demo.dao.UserDao;
-import com.xingyu.demo.dao.impl.UserDaompl;
+import com.xingyu.demo.dao.impl.UserDaoImpl;
 import com.xingyu.demo.pojo.Person;
+import com.xingyu.demo.pojo.User;
 import com.xingyu.demo.service.UserService;
 
 @Service
@@ -25,33 +28,24 @@ public class UserServiceImpl implements UserService{
 	private UserDao userDao;
 	
 	@RoutingDataSource(DBConstants.MYSQL)
-	public void insert(String str) {
-//		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-//		System.out.println(context.getBean("userserviceimpl"));
-		userDao.insertByJdbcTemplate();
+	public void insert(User user) {
+//		userDao.insertByJdbcTemplate();
 //		userDaompl.insertByJdbcDaoSupport();
+		userDao.insert(user);		
 	}
 	
-	public void findAll() {
-		List<Person> list = userDao.findAll();
-		for (Person person : list) {
-			System.out.println(person.toString());
-		}
-//		System.out.println("===");
-	}
-	
-	public void findById() {
-		Person person = userDao.findById(1);
-		System.out.println(person.toString());
+	public void getById(User user) {
+		User user2 = (User) userDao.getById(user);
+		System.out.println(user2.toString());
 	}	
-	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		UserServiceImpl userServiceImpl = (UserServiceImpl) context.getBean("userserviceimpl");
-//		UserService userServiceImpl = new UserServiceImpl();
-//		userServiceImpl.test();
-//		userServiceImpl.findAll();
-		userServiceImpl.findById();
+	
+	public void getAll() {
+		List<User> list = userDao.getAll();
+		for (User user : list) {
+			System.out.println(user.toString());
+		}
 	}
+
 
 	
 }

@@ -20,8 +20,25 @@ import com.xingyu.demo.dao.UserDao;
 import com.xingyu.demo.pojo.Person;
 
 @Repository
-public class UserDaompl extends BaseDaoImpl implements UserDao{
+public class UserDaoImpl extends BaseDaoImpl implements UserDao{
 
+	public UserDaoImpl() {
+		setNamespace("com.xingyu.demo.mapper.UserMapper.");
+	}
+
+	//目前basedao中的方法够用
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //	@Autowired
 //	private DataSource dataSource;
 	
@@ -55,22 +72,22 @@ public class UserDaompl extends BaseDaoImpl implements UserDao{
 //		}
 //	}
 	
-	public void insertByJdbcTemplate() {
-		String sql = "insert into user (id, name,age) values (1, 'kobe',18)";
-		jdbcTemplate.execute(sql);
-		
-	}
-	
-	public List<Person> findAll() {
-		String sql = "select * from user";
-		List<Person> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Person.class));
-		return list;
-	}
-	
-	public Person findById(int id) {
-		String sql = "select * from user where id = ?";
-		Person person = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Person.class));
-		return person;
-	}
+//	public void insertByJdbcTemplate() {
+//		String sql = "insert into user (id, name,age) values (1, 'kobe',18)";
+//		jdbcTemplate.execute(sql);
+//		
+//	}
+//	
+//	public List<Person> findAll() {
+//		String sql = "select * from user";
+//		List<Person> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Person.class));
+//		return list;
+//	}
+//	
+//	public Person findById(int id) {
+//		String sql = "select * from user where id = ?";
+//		Person person = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Person.class));
+//		return person;
+//	}
 	
 }

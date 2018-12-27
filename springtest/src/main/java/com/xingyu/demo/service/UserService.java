@@ -1,12 +1,12 @@
 package com.xingyu.demo.service;
 
-
+import com.xingyu.demo.pojo.User;
 
 public interface UserService {
 	
-	 void insert(String str);
+	 void insert(User user);
 
-	 void findAll();
+	 void getAll();
 
-	 void findById();
+	 void getById(User user);
 }
