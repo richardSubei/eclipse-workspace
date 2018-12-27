@@ -51,8 +51,8 @@
 	<bean id="dataSource" class="com.xingyu.demo.context.MultiDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
-				<entry value-ref="mysql" key="mysql"></entry>
-				<entry value-ref="db2" key="db2"></entry>
+				<entry value-ref="mysql" key="MYSQL"></entry>
+				<entry value-ref="db2" key="DB2"></entry>
 			</map>
 		</property>
 		<!-- 默认使用server的数据源 -->

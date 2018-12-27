@@ -27,9 +27,12 @@ public class Aop {
 	@Before("pointCut_()")
 	public void before(JoinPoint joinPoint) {
 		System.out.println("begin");
+		Class<?> className = joinPoint.getTarget().getClass();
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-		Method method = signature.getMethod();
+		String methodName = signature.getName();
+		Class<?>[] args = signature.getMethod().getParameterTypes();
 		try {
+			Method method = className.getMethod(methodName, args);
 			if (method.isAnnotationPresent(RoutingDataSource.class)) {
 				RoutingDataSource routingDataSource = method.getAnnotation(RoutingDataSource.class);
 				String dbType = routingDataSource.value();
@@ -37,7 +40,9 @@ public class Aop {
 			}
 		} catch (SecurityException e) {
 			e.printStackTrace();
-		} 
+		} catch (NoSuchMethodException e) {
+			// TODO: handle exception
+		}
 	}
 	@After("pointCut_()")
 	public void after() {
