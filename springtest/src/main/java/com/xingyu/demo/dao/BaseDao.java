@@ -1,13 +1,15 @@
 package com.xingyu.demo.dao;
 
+import java.util.List;
+
 
 public interface BaseDao<T> {
 
-	public boolean insert(T t);
+	public int insert(T t);
 	
-	public boolean getById(T t);
+	public T getById(T t);
 	
-	public boolean getAll();
+	public List<T> getAll();
 	
 	
 }

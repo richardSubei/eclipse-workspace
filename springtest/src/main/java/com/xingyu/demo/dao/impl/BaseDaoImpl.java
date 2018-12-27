@@ -1,5 +1,8 @@
 package com.xingyu.demo.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,19 +24,19 @@ public class BaseDaoImpl<T> extends SqlSessionDaoSupport implements BaseDao<T>{
 		this.namespace = namespace;
 	}
 
-	public boolean insert(T t) {
-		// TODO Auto-generated method stub
-		return false;
+	public int insert(T t) {
+		getSqlSession().insert(namespace + "insert", t);
+		return 1;
 	}
 
-	public boolean getById(T t) {
+	public T getById(T t) {
 		// TODO Auto-generated method stub
-		return false;
+		return t;
 	}
 
-	public boolean getAll() {
+	public List<T> getAll() {
 		// TODO Auto-generated method stub
-		return false;
+		return new ArrayList<T>();
 	}
 
 }
