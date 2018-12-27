@@ -56,19 +56,19 @@ public class UserDaompl extends BaseDaoImpl implements UserDao{
 //	}
 	
 	public void insertByJdbcTemplate() {
-		String sql = "insert into person (id, name) values (3, 'kurry')";
+		String sql = "insert into user (id, name,age) values (1, 'kobe',18)";
 		jdbcTemplate.execute(sql);
 		
 	}
 	
 	public List<Person> findAll() {
-		String sql = "select * from person";
+		String sql = "select * from user";
 		List<Person> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Person.class));
 		return list;
 	}
 	
 	public Person findById(int id) {
-		String sql = "select * from person where id = ?";
+		String sql = "select * from user where id = ?";
 		Person person = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Person.class));
 		return person;
 	}

@@ -27,14 +27,20 @@ public class Aop {
 	@Before("pointCut_()")
 	public void before(JoinPoint joinPoint) {
 		System.out.println("begin");
+		//获取目标类
 		Class<?> className = joinPoint.getTarget().getClass();
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+		//获取方法名
 		String methodName = signature.getName();
+		//获取方法参数
 		Class<?>[] args = signature.getMethod().getParameterTypes();
 		try {
+			//获取到方法
 			Method method = className.getMethod(methodName, args);
+			//判断有无注解
 			if (method.isAnnotationPresent(RoutingDataSource.class)) {
 				RoutingDataSource routingDataSource = method.getAnnotation(RoutingDataSource.class);
+				//获得注解设置的值
 				String dbType = routingDataSource.value();
 				DBContextHolder.setDBType(dbType);
 			}

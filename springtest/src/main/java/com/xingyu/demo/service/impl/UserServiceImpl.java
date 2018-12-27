@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired()
 	private UserDao userDao;
 	
-	@RoutingDataSource(DBConstants.DB2)
+	@RoutingDataSource(DBConstants.MYSQL)
 	public void insert(String str) {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 //		System.out.println(context.getBean("userserviceimpl"));
