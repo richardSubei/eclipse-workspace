@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xingyu.demo.pojo.User;
 import com.xingyu.demo.service.UserService;
@@ -18,12 +19,12 @@ public class UserController {
 	
 	public void insert() {
 		User user = new User();
-		user.setId(2);
-		user.setName("kobe");
-		user.setAge(18);
+		user.setId(3);
+		user.setName("kurrey");
+		user.setAge(23);
 		userService.insert(user);
 	}
-	
+	@RequestMapping("/getById")
 	public void getById() {
 		User user = new User();
 		user.setId(1);
@@ -39,5 +40,6 @@ public class UserController {
 		UserController userController = (UserController) context.getBean("userController");
 		userController.insert();
 //		userController.getAll();
+//		userController.getById();
 	}
 }

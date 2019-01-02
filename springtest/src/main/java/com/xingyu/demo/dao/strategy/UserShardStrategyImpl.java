@@ -1,3 +1,4 @@
+
 package com.xingyu.demo.dao.strategy;
 
 import com.google.code.shardbatis.strategy.ShardStrategy;

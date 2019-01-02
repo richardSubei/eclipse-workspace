@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -20,6 +22,7 @@ import com.xingyu.demo.dao.UserDao;
 import com.xingyu.demo.pojo.Person;
 
 @Repository
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class UserDaoImpl extends BaseDaoImpl implements UserDao{
 
 	public UserDaoImpl() {
