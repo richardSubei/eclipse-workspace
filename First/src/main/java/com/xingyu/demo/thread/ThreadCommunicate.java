@@ -16,7 +16,8 @@ public class ThreadCommunicate {
 	public static void main(String[] args) throws Exception {
 		// new ThreadCommunicate().suspend();
 //		new ThreadCommunicate().suspendDeadLock();
-		new ThreadCommunicate().suspendDeadLock1();
+//		new ThreadCommunicate().suspendDeadLock1();
+		new ThreadCommunicate().waitTest();
 
 	}
 
@@ -87,6 +88,35 @@ public class ThreadCommunicate {
 		Thread.sleep(20);
 		baozidian = new Object();
 		consumerThread.resume();
+		System.out.println("3.通知消费者有包子了");
+	}
+	
+	public void waitTest() throws Exception {
+		Thread consumerThread = new Thread( ()-> {
+			if (baozidian == null) {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("1.没有包子，进入等待");
+				synchronized (this) {
+					try {
+						wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			System.out.println("2.买到包子回家");
+		});
+		consumerThread.start();
+		Thread.sleep(3000);
+		baozidian = new Object();
+		synchronized (this) {
+			notifyAll();
+		}
 		System.out.println("3.通知消费者有包子了");
 	}
 	
